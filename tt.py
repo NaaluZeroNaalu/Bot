@@ -46,6 +46,6 @@ st.write("Ask questions related to suspicious emails, links, or messages.")
 # Chat interface
 user_input = st.text_input("You:", "")
 
-if user_input:
+if st.button("Ask"):
     response = bot.get_response(user_input)
     st.markdown(f"**🤖 Bot:** {response}")
