@@ -1,2 +1,3 @@
+streamlit
 scikit-learn
-re
+numpy
