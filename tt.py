@@ -33,7 +33,7 @@ class SimpleRetrievalBot:
             return "I'm not sure. Could you rephrase or ask something else?"
 
 # ----- Load Data and Create Bot -----
-file_path = "your_conversations.txt"  # Replace with your actual file name
+file_path = "phisingdataset.txt"  # Replace with your actual file name
 questions, answers = load_conversations(file_path)
 bot = SimpleRetrievalBot(questions, answers)
 
