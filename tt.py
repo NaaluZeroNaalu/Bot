@@ -3,6 +3,9 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+if 'tower2_finishing' not in st.session_state:
+    st.session_state.tower2_finishing = ""
 # ----- Load and Parse the .txt File -----
 @st.cache_data
 def load_conversations(file_path):
@@ -13,6 +16,16 @@ def load_conversations(file_path):
     questions = [user.strip() for user, _ in dialogues]
     answers = [bot.strip() for _, bot in dialogues]
     return questions, answers
+
+
+def UpdateModel(user, answer):
+    f = open("phisingdataset.txt","a")
+    f.write("\n")
+    f.write("\n")
+    f.write(f"User:{user}")
+    f.write("\n")
+    f.write(f"Bot:{answer}")
+    f.close()
 
 # ----- Bot Class -----
 class SimpleRetrievalBot:
@@ -37,6 +50,8 @@ file_path = "phisingdataset.txt"  # Replace with your actual file name
 questions, answers = load_conversations(file_path)
 bot = SimpleRetrievalBot(questions, answers)
 
+check = False
+
 # ----- Streamlit UI -----
 # st.set_page_config(page_title="Phishing-Aware AI", layout="centered")
 
@@ -49,3 +64,12 @@ user_input = st.text_input("You:", "")
 if st.button("Ask"):
     response = bot.get_response(user_input)
     st.markdown(f"**🤖 Bot:** {response}")
+
+if st.feedback("thumbs") == False:
+    check = True
+    if check:
+        update_response = st.text_input("Tell me something that i want to update")
+        if st.button("Update"):
+            UpdateModel(user_input, update_response)
+            check = False
+
