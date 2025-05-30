@@ -38,7 +38,7 @@ questions, answers = load_conversations(file_path)
 bot = SimpleRetrievalBot(questions, answers)
 
 # ----- Streamlit UI -----
-st.set_page_config(page_title="Phishing-Aware AI", layout="centered")
+# st.set_page_config(page_title="Phishing-Aware AI", layout="centered")
 
 st.title("🛡️ Phishing-Aware AI")
 st.write("Ask questions related to suspicious emails, links, or messages.")
